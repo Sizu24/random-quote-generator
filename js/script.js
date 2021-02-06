@@ -37,25 +37,30 @@ const randomColor = ()=>{
 }
 
 /***
- * `getRandomQuote` function
+ * Generates random number with length of quotes array
+ * Returns random quote object
 ***/
 const getRandomQuote = ()=>{
   let num = Math.floor(Math.random() * quotes.length);
   return quotes[num];
 }
 /***
- * `printQuote` function
+ * Runs random color funtion for backgorund
+ * Updates HTML with new quote and info
 ***/
 
 const printQuote = ()=>{
+  // variables
   const quote = document.querySelector(".quote");
   const source = document.querySelector(".source");
   const type = document.querySelector(".type");
   let returnedQuote = getRandomQuote();
   let extraInfo = `<p class="source">${returnedQuote.source}`;
 
+  // run random color function
   randomColor();
 
+  // updates category for type of quote above the quote in HTML
   let quoteType = `<h2>${returnedQuote.type}`;
 
   // checks to see if citation exists in quote
