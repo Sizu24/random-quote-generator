@@ -26,6 +26,7 @@ const quotes = [
 /*
   Create random color, and set to background color
 */
+
 const randomColor = ()=>{
   let color = [0, 0, 0];
 
@@ -40,10 +41,12 @@ const randomColor = ()=>{
  * Generates random number with length of quotes array
  * Returns random quote object
 ***/
+
 const getRandomQuote = ()=>{
   let num = Math.floor(Math.random() * quotes.length);
   return quotes[num];
 }
+
 /***
  * Runs random color funtion for backgorund
  * Updates HTML with new quote and info
@@ -51,11 +54,13 @@ const getRandomQuote = ()=>{
 
 const printQuote = ()=>{
   // variables
-  const quote = document.querySelector(".quote");
-  const source = document.querySelector(".source");
-  const type = document.querySelector(".type");
   let returnedQuote = getRandomQuote();
-  let extraInfo = `<p class="source">${returnedQuote.source}`;
+  let quoteString =
+   `<p class="quote">${returnedQuote.quote}</p>
+    <p class="source">${returnedQuote.source}
+   `;
+   const quoteBox = document.querySelector("#quote-box");
+  const type = document.querySelector(".type");
 
   // run random color function
   randomColor();
@@ -65,31 +70,27 @@ const printQuote = ()=>{
 
   // checks to see if citation exists in quote
   if(returnedQuote.citation){
-    extraInfo += `<span class="citation">${returnedQuote.citation}</span>`;
+    quoteString += `<span class="citation">${returnedQuote.citation}</span>`;
   }
+
   // checks to see if year exists in quote
   if(returnedQuote.year){
-    extraInfo += `<span class="year">${returnedQuote.year}</span>`;
+    quoteString += `<span class="year">${returnedQuote.year}</span>`;
   }
 
   // add closing p tag to extraInfo
-  extraInfo += "</p>";
+  quoteString += "</p>";
 
-  // add quote and source info to HTML to print to screen
+  // add quote string and quote type info to HTML to print to screen
+  quoteBox.innerHTML = quoteString;
   type.innerHTML = quoteType;
-  quote.innerHTML = returnedQuote.quote;
-  source.innerHTML = extraInfo;
 }
 
 /*
-  Event listener on Auto Quote button to 
-  set interval to generate random quote every 5 seconds 
+  Set interval to generate random quote every 5 seconds 
 */
-slideshow.addEventListener("click", ()=>{
-  printQuote();
   setInterval(printQuote, 5000);
-});
-
+  
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
