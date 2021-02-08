@@ -55,8 +55,11 @@ const getRandomQuote = ()=>{
 const printQuote = ()=>{
   // variables
   let returnedQuote = getRandomQuote();
+  let quoteType = `<h2>${returnedQuote.type}`;
   let quoteString =
-   `<p class="quote">${returnedQuote.quote}</p>
+   `
+    <p class"type">${quoteType}<p>
+    <p class="quote">${returnedQuote.quote}</p>
     <p class="source">${returnedQuote.source}
    `;
    const quoteBox = document.querySelector("#quote-box");
@@ -66,7 +69,7 @@ const printQuote = ()=>{
   randomColor();
 
   // updates category for type of quote above the quote in HTML
-  let quoteType = `<h2>${returnedQuote.type}`;
+
 
   // checks to see if citation exists in quote
   if(returnedQuote.citation){
@@ -83,7 +86,6 @@ const printQuote = ()=>{
 
   // add quote string and quote type info to HTML to print to screen
   quoteBox.innerHTML = quoteString;
-  type.innerHTML = quoteType;
 }
 
 /*
